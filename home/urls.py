@@ -14,7 +14,7 @@ urlpatterns = [
     path('accounts/edit-profile', vu.edit_profile_view, name='edit-profile'),
 
     # utilities
-    path('account-settings', vu.account_settings_view, name='settings'),
+    path('account-settings', vu.account_settings, name='settings'),
     path('about', vu.about_view, name='about'),
     path('contact', vu.contact_view, name='contact'),
 ]

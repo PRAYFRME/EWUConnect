@@ -1,103 +1,283 @@
-{% extends 'users/base.html'%}
-{% load static %}
+{% extends 'users/base.html'%} {% load static %} {% block title %}
+{{profile.user.name }} {% endblock title %} {% block content %}
+<div class="row row-cols-1 align-items-center" style="width: 100%">
+  {% include 'users/navbar.html' %}
 
-{% block title %}{{ profile.user.name }}{% endblock title %}
+  <div class="col-12">
+    <div style="width: 100%; height: 100%; margin: 5px">
+      <div style="margin: 5px; margin-right: 40%; margin-left: 40%">
+        {% if profile.image %}
+        <a href="{{ profile.image.url }}" target="_blank">
+          <img
+            class="rounded-circle"
+            data-bss-hover-animate="pulse"
+            src="{{ profile.image.url }}"
+            style="width: 250px; height: 250px"
+          />
+        </a>
+        {% else %}
+        <img
+          class="rounded-circle"
+          data-bss-hover-animate="pulse"
+          src="{% static 'img/user-placeholder.png' %}"
+          style="width: 250px; height: 250px"
+        />
+        {% endif %}
+      </div>
+      <div
+        style="width: 100%; height: 100%; margin-right: 15%; margin-left: 15%"
+      >
+        <div class="card" style="width: 70%; margin: 5px">
+          <div class="card-header">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  data-toggle="tab"
+                  href="#posts"
+                  style="font-family: Roboto, sans-serif"
+                  >Posts</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  data-toggle="tab"
+                  href="#about"
+                  style="font-family: Roboto, sans-serif"
+                  >About</a
+                >
+              </li>
+              {% comment %}
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="#"
+                  style="font-family: Roboto, sans-serif"
+                  >Photos</a
+                >
+              </li>
+              {% endcomment %}
+            </ul>
+          </div>
 
-{% block content %}
-<div class="row row-cols-1 align-items-center" style="width: 100%;">
+          <div class="card-body">
+            <h4 class="card-title" style="font-family: Roboto, sans-serif">
+              {{ profile.user.name }}
+            </h4>
+            <h6
+              class="text-muted card-subtitle mb-2"
+              style="font-family: Roboto, sans-serif"
+            >
+              {{ profile.user.email }}
+            </h6>
 
-    {% include 'users/navbar.html' %}
-
-    <div class="col-12">
-        <div style="width: 100%; height: 100%; margin: 5px;">
-            <div style="margin: 5px; margin-right: 40%; margin-left: 40%;">
-                {% if profile.image %}
-                <a href="{{ profile.image.url }}" target="_blank">
-                    <img class="rounded-circle"
-                         data-bss-hover-animate="pulse"
-                         src="{{ profile.image.url }}"
-                         style="width: 250px; height: 250px;"/>
-                </a>
-                {% else %}
-                <img class="rounded-circle"
-                         data-bss-hover-animate="pulse"
-                         src="{% static 'img/user-placeholder.png' %}"
-                         style="width: 250px; height: 250px;"/>
-                {% endif %}
-            </div>
-            <div style="width: 100%; height: 100%; margin-right: 15%; margin-left: 15%;">
-
-                <div class="card" style="width: 70%; margin: 5px;">
-
-                    <div class="card-header">
-                        <ul class="nav nav-tabs card-header-tabs">
-                            <li class="nav-item"><a class="nav-link" href="#" style="font-family: Roboto, sans-serif;">Posts</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link active" href="#"
-                                                    style="font-family: Roboto, sans-serif;">About</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#" style="font-family: Roboto, sans-serif;">Photos</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="card-body">
-                        <h4 class="card-title" style="font-family: Roboto, sans-serif;">{{ profile.user.name }}</h4>
-                        <h6 class="text-muted card-subtitle mb-2" style="font-family: Roboto, sans-serif;">
-                            {{ profile.user.email }}
-                        </h6>
-                        {% if profile.bio %}
-                        <p class="card-text" style="font-family: Roboto, sans-serif;">
-                            {{ profile.bio }}
-                        </p>
-                        {% else %}
-                        {% if is_self %}
-                        <button
-                                class="btn btn-primary bg-primary border rounded-pill"
-                                type="button"
-                                style="width: 10%; height: 45px; margin: 0px; margin-top: 5px; margin-bottom: 5px; margin-right: 5px; font-family: Roboto, sans-serif; background: rgb(120, 194, 173);"
-                        >Add Bio
-                        </button>
-                        {% endif %}
-                        {% endif %}
-
-                        {% if not is_self %}
-                        <button class="btn btn-success border rounded-pill" type="button"
-                                style="font-family: Roboto, sans-serif; width: 75px; height: 45px; margin: 5px;">Follow
-                        </button>
-
-                        <button class="btn btn-primary border rounded-pill" type="button"
-                                style="font-family: Roboto, sans-serif; height: 45px; width: 95px; margin: 5px;">Message
-                        </button>
-                        <button class="btn btn-dark border rounded-pill" type="button"
-                                style="font-family: Roboto, sans-serif; font-weight: bold; width: 50px; height: 45px; margin: 5px;">
-                            . . .
-                        </button>
-                        {% endif %}
-                    </div>
-                </div>
-
-                <div class="card" style="width: 70%; margin: 5px;">
-                    <div class="card-header"><h5 class="mb-0" style="font-family: Roboto, sans-serif;">Education &amp;
-                        Career</h5></div>
-                    <div class="card-body" style="background: #dfe7f1;">
-                        <ul class="text-capitalize text-start text-body" style="font-family: Roboto, sans-serif;">
-                            <li>Software Engineer at Moogle since 2021</li>
-                            <li>Intern from Gicrosoft from 2015-2016</li>
-                            <li>CSE from EWU</li>
-                            <li>HSE from ABC college, Dhaka</li>
-                        </ul>
-                    </div>
+            <p class="card-text" style="font-family: Roboto, sans-serif">
+              {{ profile.bio }}
+            </p>
+            {% if is_self %}
+            <div class="modal fade" role="dialog" tabindex="-1" id="modal-2">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Edit</h4>
                     <button
-                            class="btn btn-primary bg-primary border rounded-pill"
-                            type="button"
-                            style="width: 10%; height: 45px; margin: 0px; margin-top: 5px; margin-bottom: 5px; margin-right: 5px; margin-left: 20px; font-family: Roboto, sans-serif; background: rgb(120, 194, 173);"
-                    >
-                        Edit
-                    </button>
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <form method="POST">
+                    <div class="modal-body">
+                      <label class="form-label">Add Bio</label>
+
+                      {% csrf_token %}
+                      <input
+                        name="bio"
+                        type="text"
+                        style="margin: 5px; width: 80%"
+                      />
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        class="btn btn-light"
+                        type="button"
+                        data-bs-dismiss="modal"
+                      >
+                        Close</button
+                      ><button class="btn btn-primary" type="submit">
+                        Save
+                      </button>
+                    </div>
+                  </form>
                 </div>
+              </div>
             </div>
+            <button
+              class="btn btn-primary bg-primary border rounded-pill"
+              type="button"
+              style="
+                width: 10%;
+                height: 45px;
+                margin: 0px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                margin-right: 5px;
+                font-family: Roboto, sans-serif;
+                background: rgb(120, 194, 173);
+              "
+              data-bs-target="#modal-2"
+              data-bs-toggle="modal"
+            >
+              Add Bio
+            </button>
+            {% endif %} {% if not is_self %}
+            <button
+              class="btn btn-success border rounded-pill"
+              type="button"
+              style="
+                font-family: Roboto, sans-serif;
+                width: 75px;
+                height: 45px;
+                margin: 5px;
+              "
+            >
+              Follow
+            </button>
+
+            <button
+              class="btn btn-primary border rounded-pill"
+              type="button"
+              style="
+                font-family: Roboto, sans-serif;
+                height: 45px;
+                width: 95px;
+                margin: 5px;
+              "
+            >
+              Message
+            </button>
+            <button
+              class="btn btn-dark border rounded-pill"
+              type="button"
+              style="
+                font-family: Roboto, sans-serif;
+                font-weight: bold;
+                width: 50px;
+                height: 45px;
+                margin: 5px;
+              "
+            >
+              . . .
+            </button>
+            {% else %}
+            <a
+              class="btn btn-success border rounded-pill"
+              href="{% url 'edit-profile' %}"
+            >
+              Edit Profile
+            </a>
+            {% endif %}
+          </div>
         </div>
+
+        <div class="tab-content">
+          <div class="container tab-pane active" id="posts">
+            <h1>This is working</h1>
+          </div>
+          <div class="tab-pane container active" id="about">
+            <div class="card" style="width: 70%; margin: 5px">
+              <div class="card-header">
+                <h5 class="mb-0" style="font-family: Roboto, sans-serif">
+                  Education &amp; Career
+                </h5>
+              </div>
+              <div class="card-body" style="background: #dfe7f1">
+                <ul
+                  class="text-capitalize text-start text-body"
+                  style="font-family: Roboto, sans-serif"
+                >
+                  {% for workItem in workExp %}
+                  <li>
+                    {{ workItem.job_type}} at {{workItem.company}} from
+                    {{workItem.started}} to {{workItem.left}}
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+              <div class="modal fade" role="dialog" tabindex="-1" id="modal-1">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Edit</h4>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <form method = "POST">
+                    {% csrf_token %}
+                      <div class="modal-body">
+                        <label class="form-label">Job Title</label>
+                        {{workform.job_title}}
+                        <label class="form-label">Job Type</label>
+                        {{workform.job_type}}
+                        <label class="form-label">Job Description</label>
+                        {{workform.job_desc}}
+                        <label class="form-label">Company</label>
+                        {{workform.company}}
+                        <label class="form-label">Location</label>
+                        {{workform.location}}
+                        <label class="form-label">Started</label>
+                        {{workform.started}}
+                        <label class="form-label">Left</label>
+                        {{workform.left}}
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          class="btn btn-light"
+                          type="button"
+                          data-bs-dismiss="modal"
+                        >
+                          Close</button
+                        ><button class="btn btn-primary" type="submit">
+                          Save
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="btn btn-primary bg-primary border rounded-pill"
+                type="button"
+                style="
+                  width: 10%;
+                  height: 45px;
+                  margin: 0px;
+                  margin-top: 5px;
+                  margin-bottom: 5px;
+                  margin-right: 5px;
+                  margin-left: 20px;
+                  font-family: Roboto, sans-serif;
+                  background: rgb(120, 194, 173);
+                "
+                data-bs-target="#modal-1"
+                data-bs-toggle="modal"
+              >
+                Edit
+              </button>
+            </div>
+          </div>
+          {% comment %}
+          <div class="tab-pane container fade" id="photos">...</div>
+          {% endcomment %}
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock content %}
-

@@ -1,0 +1,39 @@
+{% extends 'users/base.html' %} {% load static %} {% load widget_tweaks %} 
+{% load crispy_forms_tags %} 
+{%block title %} - Settings{% endblock title %} {% block content %}
+
+  <div class="container-fluid p-5">
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="text-left mb-3">
+                <p class="h3 text-black">Account Settings</p>
+                <div class="row">
+                    <div class="card col-12">
+                        <form class="p-4 p-md-5 border rounded" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{form.media}}
+                            <h3 class="text-black mb-5 border-bottom pb-2">Edit Profile Information</h3>
+
+                            <div class="form-outline mb-3">
+                                {{ profileForm | crispy }}
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn btn-block btn-primary btn-md" type="submit">Update
+                                    Profile Information
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+  {% endblock content %}
+</body>

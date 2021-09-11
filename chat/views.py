@@ -1,9 +1,13 @@
 from django.shortcuts import render
-
 from .models import Message
+from users.models import ProfileModel, UserModel
 
 def index(request):
-    return render(request, 'chat/index.html')
+    profile = ProfileModel.objects.get(user= request.user)
+    context = {
+        "profile" : profile, 
+    }
+    return render(request, 'chat/index.html', context)
 
 def room(request, room_name):
     username = request.GET.get('username', 'Anonymous')

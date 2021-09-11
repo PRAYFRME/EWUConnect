@@ -1,0 +1,101 @@
+{% extends 'users/base.html' %} {% load static %} {% load widget_tweaks %} 
+{% load crispy_forms_tags %} 
+{%block title %} - Settings{% endblock title %} {% block content %}
+
+<body style="background: #c9d7e8">
+  
+  <div class="container-fluid p-5">
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="text-left mb-3">
+                <p class="h3 text-black">Account Settings</p>
+
+                <div class="row">
+                    <div class="card col-12 col-sm-6">
+                        <form action="" class="p-4 p-md-5 border rounded" method="post">
+                            {% csrf_token %}
+
+                            <h3 class="text-black mb-5 border-bottom pb-2">Edit Account Information</h3>
+
+                            <div class="form-outline mb-3">
+                                {{ information_form.name|add_class:"form-control" }}
+                                <label class="form-label">Name</label>
+                            </div>
+
+                            <div class="form-outline mb-3">
+                                {{ information_form.email|add_class:"form-control" }}
+                                {{ information_form.email.errors }}
+                                <label class="form-label">Email Address</label>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn btn-block btn-primary btn-md" type="submit">Update
+                                    Account Information
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <div class="card col-12 col-sm-6">
+                        <form action="" class="p-4 p-md-5 border rounded" method="post">
+                            {% csrf_token %}
+
+                            <h3 class="text-black mb-5 border-bottom pb-2">Change Password</h3>
+
+                            <div class="form-outline mb-3">
+                                {{ password_form.old_password|add_class:"form-control" }}
+                                {{ password_form.old_password.errors }}
+                                <label class="form-label">Old Password</label>
+                            </div>
+
+                            <div class="form-outline">
+                                {{ password_form.new_password1|add_class:"form-control" }}
+                                {{ password_form.new_password1.errors }}
+                                <label class="form-label">New Password</label>
+                                <ul class='form-errors list-group mb-1 mt-1'>
+                                    {% for error in password_form.password1.errors %}
+                                    <li class="small list-group-item list-group-item-danger">{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                                <p class="small">{{ password_form.password1.help_text|safe }}</p>
+                            </div>
+
+                            <div class="form-outline">
+                                {{ password_form.new_password2|add_class:"form-control" }}
+                                <label class="form-label">Confirm Password</label>
+                                <ul class='form-errors list-group mb-1 mt-1'>
+                                    {% for error in password_form.password2.errors %}
+                                    <li class="small list-group-item list-group-item-danger">{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                                <p class="small mt-1">{{ password_form.password2.help_text|safe }}</p>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn btn-block btn-primary btn-md" type="submit">Change
+                                    Password
+                                </button>
+                            </div>
+                        </form>
+
+                        {% for message in messages %}
+                        <div class="alert alert-success">
+                            <a class="close" data-dismiss="alert" href="#">×</a>
+
+                            {{ message }}
+
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+  {% endblock content %}
+</body>

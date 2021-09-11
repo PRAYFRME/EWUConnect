@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
-from django.forms import ModelForm
+from django.forms import ModelForm, fields
 
 from .models import *
 
@@ -52,7 +52,7 @@ class EditProfileForm(ModelForm):
     ]
 
     BLOOD_GROUP_CHOICES = [
-        ('A+', 'Select Blood Group'),
+        ('', 'Select Blood Group'),
         ('A+', 'A+'),
         ('A-', 'A-'),
         ('B+', 'B+'),
@@ -68,6 +68,9 @@ class EditProfileForm(ModelForm):
         error_messages={'invalid': "Image files only"},
         widget=forms.FileInput,
     )
+    birth_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    gender = forms.CharField(widget=forms.Select(choices=GENDER_CHOICES))
+    blood_group = forms.CharField(widget=forms.Select(choices=BLOOD_GROUP_CHOICES))
 
     class Meta:
         model = ProfileModel
@@ -79,3 +82,26 @@ class AccountInformationForm(ModelForm):
     class Meta:
         model = UserModel
         fields = ('name', 'email')
+        
+class BioForm(ModelForm):
+    class Meta:
+        model = ProfileModel
+        fields = ('bio',)
+
+
+class EduForm(ModelForm):
+    class Meta:
+        model = EducationModel
+        fields = ('school', 'degree', 'department', 'started', 'end')
+
+class WorkForm(ModelForm):
+    started = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    left = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    class Meta:
+        model = WorkExperienceModel
+        fields = ('job_title', 'job_type', 'job_desc', 'company', 'location', 'started', 'left')
+
+class AwardForm(ModelForm):
+    class Meta:
+        model = AwardModel
+        fields = ('detail',)

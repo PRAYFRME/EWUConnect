@@ -75,28 +75,22 @@ class ProfileModel(models.Model):
 
 
 class EducationModel(models.Model):
-    user = models.ForeignKey(UserModel, null=True, on_delete=models.CASCADE)
-    school = models.CharField(max_length=255, null=True, blank=True)
-    degree = models.CharField(max_length=255, null=True, blank=True)
-    department = models.CharField(max_length=255, null=True, blank=True)
-    started = models.DateField(null=True, blank=True)
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    school = models.CharField(max_length=255)
+    degree = models.CharField(max_length=255)
+    department = models.CharField(max_length=255)
+    started = models.DateField()
     end = models.DateField(null=True, blank=True)
 
 
 class WorkExperienceModel(models.Model):
-    # JOB_TYPE_CHOICES = [
-    #     ('Full Time', 'Full Time'),
-    #     ('Part Time', 'Part Time'),
-    #     ('Intern', 'Intern'),
-    # ]
-
-    user = models.ForeignKey(UserModel, null=True, on_delete=models.CASCADE)
-    job_title = models.CharField(max_length=255, null=True, blank=True)
-    job_type = models.CharField(max_length=30, null=True, blank=True)
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    job_title = models.CharField(max_length=255)
+    job_type = models.CharField(max_length=30)
     job_desc = models.TextField(null=True, blank=True)
     company = models.CharField(max_length=255)
-    location = models.CharField(max_length=255, null=True, blank=True)
-    started = models.DateField(null=True, blank=True)
+    location = models.CharField(max_length=255)
+    started = models.DateField()
     left = models.DateField(null=True, blank=True)
 
 

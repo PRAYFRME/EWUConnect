@@ -1,2 +1,2 @@
-# EWUConnect [![wakatime](https://wakatime.com/badge/github/PRAYFRME/EWUConnect.svg)](https://wakatime.com/badge/github/PRAYFRME/EWUConnect)
+# EWUConnect [![wakatime](https://wakatime.com/badge/github/FarhanMilkCandy/EWUConnect.svg)](https://wakatime.com/badge/github/FarhanMilkCandy/EWUConnect)
 Project For CSE412 Software Engineering Course

@@ -1,315 +1,119 @@
-{% extends 'home/base.html' %}
-{% load static %}
+{% extends 'home/base.html' %} {% load static %} {% load crispy_forms_tags %} 
+{%block body %} {% include 'home/navbar.html' %}
 
-{% block body %}
-
-{% include 'home/navbar.html' %}
-
-<div class="d-inline-flex d-xxl-flex position-absolute"
-     style="width: device-width; height: 100%; margin: 10px; margin-right: 0; margin-bottom: 0; margin-left: 0;">
-    <div class="row" style="width: device-width; height: 100%; margin-left: 0px; margin-right: 0px;">
-        <!-- left column starts -->
-        <div class="col-3 col-xxl-3">
-            <div class="d-xxl-flex justify-content-xxl-start" style="width: 100%; height: 100%; margin-top: 0px;">
-                <ul class="list-group" style="width: 100%; height: 100%; margin-top: 5px;">
-                    <li class="list-group-item"><span>Groups</span></li>
-                    <li class="list-group-item"><span>Events</span></li>
-                    <li class="list-group-item"><span>People</span></li>
-                </ul>
-            </div>
-        </div>
-        <!-- Left Column End -->
-        <!-- Timeline column starts -->
+<div class="d-inline-flex d-xxl-flex position-absolute" style="
+    width: device-width;
+    height: 100%;
+    margin: 10px;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+  ">
+  <div class="row" style="
+      width: device-width;
+      height: 100%;
+      margin-left: 0px;
+      margin-right: 0px;
+    ">
+    <!-- left column starts -->
+    <div class="col-3 col-xxl-3">
+      <div class="d-xxl-flex justify-content-xxl-start" style="width: 100%; height: 100%; margin-top: 0px">
+        <ul class="list-group" style="width: 100%; height: 100%; margin-top: 5px">
+          <li class="list-group-item"><span>Groups</span></li>
+          <li class="list-group-item"><span>Events</span></li>
+          <li class="list-group-item"><span>People</span></li>
+        </ul>
+      </div>
+    </div>
+    <!-- Left Column End -->
+    <!-- Timeline column starts -->
+    <div class="col">
+      <div class="d-xxl-flex justify-content-xxl-center" style="width: 100%; height: 100%">
         <div class="col">
-            <div class="d-xxl-flex justify-content-xxl-center" style="width: 100%; height: 100%;">
-                <div class="col">
-                    <div class="card" style="width: 100%; margin-bottom: 10px;">
-                        <div class="card-header">
-                            <ul class="nav nav-tabs card-header-tabs">
-                                <li class="nav-item" style="font-family: Roboto, sans-serif;"><h1
-                                        style="font-size: 30px; font-family: Roboto, sans-serif; margin-left: 10px;">
-                                    Post</h1></li>
-                            </ul>
-                        </div>
-                        <div class="card-body" style="font-family: Roboto, sans-serif;">
-                            <textarea class="border rounded shadow form-control-lg"
-                                      style="width: 100%; height: 100%; background: #dfe7f1;" wrap="soft"
-                                      placeholder="Write your mind here..."></textarea>
-                            <div class="row g-0">
-                                <div class="col"
-                                     style="padding-right: 0px; padding-left: 0px; width: 100%; height: 100%;">
-                                    <button class="btn btn-primary bg-primary border rounded-0" type="button"
-                                            style="width: 100%; height: 100%; font-family: Roboto, sans-serif; background: var(--bs-blue);">
-                                        Post
-                                    </button>
-                                </div>
-                                <div class="col"
-                                     style="padding-right: 0px; padding-left: 0px; width: 100%; height: 100%;">
-                                    <button class="btn btn-primary bg-info border rounded-0" type="button"
-                                            style="width: 100%; height: 100%; font-family: Roboto, sans-serif; background: #505e6c;">
-                                        Add Image
-                                    </button>
-                                </div>
-                                <div class="col"
-                                     style="padding-right: 0px; padding-left: 0px; width: 100%; height: 100%;">
-                                    <button class="btn btn-primary bg-secondary border rounded-0" type="button"
-                                            style="width: 100%; height: 100%; font-family: Roboto, sans-serif;">Cancel
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card border rounded shadow-sm" style="margin-top: 5px; margin-bottom: 10px;">
-                        <div class="card-body">
-                            <div class="d-xxl-flex align-items-xxl-center"
-                                 style="margin: 5px; margin-bottom: 10px; font-family: Roboto, sans-serif;">
-                                <div class="row d-xxl-flex align-items-xxl-center">
-                                    <div class="col-2"
-                                         style="width: 40px; padding-right: 0px; padding-left: 0px; height: 40;">
-                                        <img class="rounded-circle border" src="{% static 'img/Screenshot%20(80).png'%}"
-                                             style="width: 100%; height: 100%;"/>
-                                    </div>
-                                    <div class="col d-xxl-flex align-items-xxl-center"><h4
-                                            style="font-size: 15px; width: 100%; height: 100%; margin-bottom: 0px; margin-top: 10px; font-family: Roboto, sans-serif;">
-                                        Username</h4></div>
-                                </div>
-                            </div>
-                            <h1 class="text-muted card-subtitle mb-2"
-                                style="font-size: 10px; margin-left: 5px; margin-top: -2px; font-family: Roboto, sans-serif;">
-                                Date Time</h1>
-                            <p class="card-text"
-                               style="margin-top: 10px; margin-bottom: 15px; font-family: Roboto, sans-serif;">
-                                Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac
-                                facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.
-                            </p>
-                            <img src="{% static 'img/mountain_bg.jpg'%}" style="width: 100%; height: 100%;"/>
-                            <div style="width: 100%; height: 100%;">
-                                <div>
-                                    <div class="row" style="width: 100%;">
-                                        <div class="col-1 d-xxl-flex align-self-center align-items-xxl-center"
-                                             data-bss-hover-animate="pulse">
-                                            <i class="icon ion-arrow-up-b"
-                                               style="font-size: 30px; color: var(--bs-blue);"></i><small
-                                                style="font-family: Roboto, sans-serif; margin-left: 5px;">5</small>
-                                        </div>
-                                        <div class="col-1 d-xxl-flex align-self-center" data-bss-hover-animate="pulse">
-                                            <i class="icon ion-arrow-down-b"
-                                               style="font-size: 30px; color: rgb(255, 56, 56);"></i><small
-                                                style="font-family: Roboto, sans-serif; margin-left: 5px;">1</small>
-                                        </div>
-                                        <div class="col d-xxl-flex"
-                                             style="padding-top: 15px; padding-left: 80px; padding-right: 0px;">
-                                            <input
-                                                    class="shadow"
-                                                    type="text"
-                                                    style="width: 74%; height: 35px; margin-top: 10px; background: #c9d7e8; padding-left: 15px; border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-style: none;"
-                                                    placeholder="Comment"
-                                            />
-                                            <button
-                                                    class="btn btn-primary shadow"
-                                                    type="button"
-                                                    style="
-                          height: 35px;
-                          border-top-right-radius: 15px;
-                          border-bottom-left-radius: 0px;
-                          border-bottom-right-radius: 15px;
-                          border-top-left-radius: 0px;
-                          margin-top: -5px;
-                          width: 24%;
-                          font-size: 14px;
-                          font-family: Roboto, sans-serif;
-                        "
-                                            >
-                                                Comment
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="margin-top: 10px;">
-                                <div class="row">
-                                    <div class="col">
-                                        <p>UsernameX : Nice Photo</p>
-                                        <p>UsernameY : Filter is too dark</p>
-                                        <a href="#" style="color: var(--bs-blue);">Load All Comments</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card border rounded shadow-sm" style="margin-top: 5px; margin-bottom: 10px;">
-                        <div class="card-body">
-                            <div class="d-xxl-flex align-items-xxl-center"
-                                 style="margin: 5px; margin-bottom: 10px; font-family: Roboto, sans-serif;">
-                                <div class="row d-xxl-flex align-items-xxl-center">
-                                    <div class="col-2"
-                                         style="width: 40px; padding-right: 0px; padding-left: 0px; height: 40;">
-                                        <img class="rounded-circle border" src="{% static 'img/Screenshot%20(80).png'%}"
-                                             style="width: 100%; height: 100%;"/>
-                                    </div>
-                                    <div class="col d-xxl-flex align-items-xxl-center"><h4
-                                            style="font-size: 15px; width: 100%; height: 100%; margin-bottom: 0px; margin-top: 10px; font-family: Roboto, sans-serif;">
-                                        Username</h4></div>
-                                </div>
-                            </div>
-                            <h1 class="text-muted card-subtitle mb-2"
-                                style="font-size: 10px; margin-left: 5px; margin-top: -2px; font-family: Roboto, sans-serif;">
-                                Date Time</h1>
-                            <p class="card-text"
-                               style="margin-top: 10px; margin-bottom: 15px; font-family: Roboto, sans-serif;">
-                                Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac
-                                facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.
-                            </p>
-                            <img src="{% static 'img/mountain_bg.jpg'%}" style="width: 100%; height: 100%;"/>
-                            <div style="width: 100%; height: 100%;">
-                                <div>
-                                    <div class="row" style="width: 100%;">
-                                        <div class="col-1 d-xxl-flex align-self-center align-items-xxl-center"
-                                             data-bss-hover-animate="pulse">
-                                            <i class="icon ion-arrow-up-b"
-                                               style="font-size: 30px; color: var(--bs-blue);"></i><small
-                                                style="font-family: Roboto, sans-serif; margin-left: 5px;">5</small>
-                                        </div>
-                                        <div class="col-1 d-xxl-flex align-self-center" data-bss-hover-animate="pulse">
-                                            <i class="icon ion-arrow-down-b"
-                                               style="font-size: 30px; color: rgb(255, 56, 56);"></i><small
-                                                style="font-family: Roboto, sans-serif; margin-left: 5px;">1</small>
-                                        </div>
-                                        <div class="col d-xxl-flex"
-                                             style="padding-top: 15px; padding-left: 80px; padding-right: 0px;">
-                                            <input
-                                                    class="shadow"
-                                                    type="text"
-                                                    style="width: 74%; height: 35px; margin-top: 10px; background: #c9d7e8; padding-left: 15px; border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-style: none;"
-                                                    placeholder="Comment"
-                                            />
-                                            <button
-                                                    class="btn btn-primary shadow"
-                                                    type="button"
-                                                    style="
-                          height: 35px;
-                          border-top-right-radius: 15px;
-                          border-bottom-left-radius: 0px;
-                          border-bottom-right-radius: 15px;
-                          border-top-left-radius: 0px;
-                          margin-top: -5px;
-                          width: 24%;
-                          font-size: 14px;
-                          font-family: Roboto, sans-serif;
-                        "
-                                            >
-                                                Comment
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="margin-top: 10px;">
-                                <div class="row">
-                                    <div class="col">
-                                        <p>UsernameX : Nice Photo</p>
-                                        <p>UsernameY : Filter is too dark</p>
-                                        <a href="#" style="color: var(--bs-blue);">Load All Comments</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card border rounded shadow-sm" style="margin-top: 5px; margin-bottom: 10px;">
-                        <div class="card-body">
-                            <div class="d-xxl-flex align-items-xxl-center"
-                                 style="margin: 5px; margin-bottom: 10px; font-family: Roboto, sans-serif;">
-                                <div class="row d-xxl-flex align-items-xxl-center">
-                                    <div class="col-2"
-                                         style="width: 40px; padding-right: 0px; padding-left: 0px; height: 40;">
-                                        <img class="rounded-circle border" src="{% static 'img/Screenshot%20(80).png'%}"
-                                             style="width: 100%; height: 100%;"/>
-                                    </div>
-                                    <div class="col d-xxl-flex align-items-xxl-center"><h4
-                                            style="font-size: 15px; width: 100%; height: 100%; margin-bottom: 0px; margin-top: 10px; font-family: Roboto, sans-serif;">
-                                        Username</h4></div>
-                                </div>
-                            </div>
-                            <h1 class="text-muted card-subtitle mb-2"
-                                style="font-size: 10px; margin-left: 5px; margin-top: -2px; font-family: Roboto, sans-serif;">
-                                Date Time</h1>
-                            <p class="card-text"
-                               style="margin-top: 10px; margin-bottom: 15px; font-family: Roboto, sans-serif;">
-                                Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac
-                                facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.
-                            </p>
-                            <img src="{% static 'img/mountain_bg.jpg'%}" style="width: 100%; height: 100%;"/>
-                            <div style="width: 100%; height: 100%;">
-                                <div>
-                                    <div class="row" style="width: 100%;">
-                                        <div class="col-1 d-xxl-flex align-self-center align-items-xxl-center"
-                                             data-bss-hover-animate="pulse">
-                                            <i class="icon ion-arrow-up-b"
-                                               style="font-size: 30px; color: var(--bs-blue);"></i><small
-                                                style="font-family: Roboto, sans-serif; margin-left: 5px;">5</small>
-                                        </div>
-                                        <div class="col-1 d-xxl-flex align-self-center" data-bss-hover-animate="pulse">
-                                            <i class="icon ion-arrow-down-b"
-                                               style="font-size: 30px; color: rgb(255, 56, 56);"></i><small
-                                                style="font-family: Roboto, sans-serif; margin-left: 5px;">1</small>
-                                        </div>
-                                        <div class="col d-xxl-flex"
-                                             style="padding-top: 15px; padding-left: 80px; padding-right: 0px;">
-                                            <input
-                                                    class="shadow"
-                                                    type="text"
-                                                    style="width: 74%; height: 35px; margin-top: 10px; background: #c9d7e8; padding-left: 15px; border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-style: none;"
-                                                    placeholder="Comment"
-                                            />
-                                            <button
-                                                    class="btn btn-primary shadow"
-                                                    type="button"
-                                                    style="
-                          height: 35px;
-                          border-top-right-radius: 15px;
-                          border-bottom-left-radius: 0px;
-                          border-bottom-right-radius: 15px;
-                          border-top-left-radius: 0px;
-                          margin-top: -5px;
-                          width: 24%;
-                          font-size: 14px;
-                          font-family: Roboto, sans-serif;
-                        "
-                                            >
-                                                Comment
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="margin-top: 10px;">
-                                <div class="row">
-                                    <div class="col">
-                                        <p>UsernameX : Nice Photo</p>
-                                        <p>UsernameY : Filter is too dark</p>
-                                        <a href="#" style="color: var(--bs-blue);">Load All Comments</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          <div class="card" style="width: 100%; margin-bottom: 10px">
+            <div class="card-header">
+              <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item" style="font-family: Roboto, sans-serif">
+                  <h1 style="
+                      font-size: 30px;
+                      font-family: Roboto, sans-serif;
+                      margin-left: 10px;
+                    ">
+                    Post
+                  </h1>
+                </li>
+              </ul>
             </div>
+            <div class="card-body" style="font-family: Roboto, sans-serif">
+              <div class="row justify-content-center mt-3 mb-5">
+                <div class="col border-bottom">
+                  <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %} {{ form | crispy }}
+                    <div class="d-grid gap-2">
+                      <button class="btn btn-success mt-3">Submit!</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% for post in post_list %}
+          <div class="card border rounded shadow-sm" style="margin-top: 5px; margin-bottom: 10px">
+            <div class="card-body">
+              <div class="d-xxl-flex align-items-xxl-center" style="
+                  margin: 5px;
+                  margin-bottom: 10px;
+                  font-family: Roboto, sans-serif;
+                ">
+                <div class="row d-xxl-flex align-items-xxl-center">
+                  <div class="col d-xxl-flex align-items-xxl-center">
+                    <h4 style="
+                        font-size: 15px;
+                        width: 100%;
+                        height: 100%;
+                        margin-bottom: 0px;
+                        margin-top: 10px;
+                        font-family: Roboto, sans-serif;
+                      ">
+                      {{ post.author }}
+                    </h4>
+                  </div>
+                </div>
+              </div>
+              <h1 class="text-muted card-subtitle mb-2" style="
+                  font-size: 10px;
+                  margin-left: 5px;
+                  margin-top: -2px;
+                  font-family: Roboto, sans-serif;
+                ">
+                {{post.created_on}}
+              </h1>
+              <p>{{ post.body }}</p>
+
+              {% if post.image %}
+              <img src="{{ post.image.url }}" class="post-image rounded" style="width: 100%; height: 100%" />
+              {% endif %}
+              <a href="{% url 'post-detail' post.pk %}" class="btn btn-sm btn-primary mt-2">See More</a>
+            </div>
+          </div>
+          {% endfor %}
         </div>
+      </div>
     </div>
-    <!-- timeline column ends -->
-    <!-- last column starts -->
-    <div class="col-3">
-        <div class="d-xxl-flex justify-content-xxl-start" style="width: 100%; height: 100%;">
-            <ul style="margin-top: 5px; width: 100%; height: 100%;">
-                <li>Chat username 1</li>
-                <li>Chat username 2</li>
-                <li>Chat username 3</li>
-                <li>Chat username 4</li>
-            </ul>
-        </div>
+  </div>
+  <!-- timeline column ends -->
+  <!-- last column starts -->
+  <div class="col-3">
+    <div class="d-xxl-flex justify-content-xxl-start" style="width: 100%; height: 100%">
+      <ul style="margin-top: 5px; width: 100%; height: 100%">
+        <li>Chat username 1</li>
+        <li>Chat username 2</li>
+        <li>Chat username 3</li>
+        <li>Chat username 4</li>
+      </ul>
     </div>
-    <!-- Last Column Ends -->
+  </div>
+  <!-- Last Column Ends -->
 </div>
 
 {% endblock body %}

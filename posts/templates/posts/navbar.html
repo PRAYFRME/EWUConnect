@@ -1,0 +1,83 @@
+{% load static %}
+
+<div style="margin-bottom: 0px; width: 100%; height: 90px;">
+    <!-- Start: EWU Connect Navbar -->
+    <div style="margin: 0px; margin-bottom: 0px; margin-top: 0px; margin-right: 0px;">
+        <nav class="navbar navbar-light fixed-top shadow-sm d-flex d-xl-flex justify-content-xxl-start"
+             style="text-align: left; background: rgb(241, 247, 252); margin-bottom: 0px; width: 100%;">
+            <div class="container-fluid">
+                <div class="d-xxl-flex align-items-xxl-center" style="margin-right: 0px; width: 243;">
+                    <img src="{% static 'img/EWUConnect_Logo_Logo.png'%}" style="width: 80px; margin-left: 20px;"/>
+                    <a class="navbar-brand"
+                       style="font-family: 'Bebas Neue', serif; font-size: 30px; margin-top: 5px; color: #222222; margin-left: 5px;"
+                       href="{% url 'home' %}"><strong>EWUConnect</strong></a>
+                </div>
+                <div style="min-height: 20px; max-height: 35px; min-width: 100px; max-width: 425px; margin-left: 0px; margin-right: 0px; width: 100%; height: 40px;">
+                    <input class="border rounded-pill d-xxl-flex" type="text"
+                           style="background: #c9d7e8; border-style: none; padding: -2; padding-left: 20px; margin-left: 0; margin-right: 0px; height: 100%; width: 100%;"
+                           placeholder="Search"/>
+                </div>
+                <div class="d-flex" style="padding-right: 0; margin: 0; margin-right: 40px; margin-left: 0px;">
+                    <div class="row">
+                        <div class="col"
+                             style="padding: 0px; padding-right: 12px; padding-left: 12px; border-style: none;">
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="1em"
+                                    height="1em"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="2"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="icon icon-tabler icon-tabler-messages"
+                                    data-bss-hover-animate="rubberBand"
+                                    style="font-size: 35px; color: #1c1d1d; border-style: none;"
+                            >
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10"></path>
+                                <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2"></path>
+                            </svg>
+                        </div>
+                        <div class="col" style="border-style: none;">
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="1em"
+                                    height="1em"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="2"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="icon icon-tabler icon-tabler-notification"
+                                    data-bss-hover-animate="rubberBand"
+                                    style="color: #1c1d1d; font-size: 35px;"
+                            >
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M10 6h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"></path>
+                                <circle cx="17" cy="7" r="3"></circle>
+                            </svg>
+                        </div>
+                        <div class="col">
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" id="user-dropdown"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="far fa-user-circle" data-bss-hover-animate="rubberBand"
+                                       style="color: #1c1d1d; font-size: 30px;"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="user-dropdown">
+                                    <a class="dropdown-item" href="{% url 'profile' request.user.id %}">Profile</a>
+                                    <a class="dropdown-item" href="{% url 'settings' %}">Settings</a>
+                                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- End: EWU Connect Navbar -->
+</div>

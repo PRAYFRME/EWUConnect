@@ -2,9 +2,10 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from .views import *
 import users.views as vu
+import posts.views as postView
 
 urlpatterns = [
-    path('', home_view, name='home'),
+    path('', postView.post_home_view, name='home'),
 
     # user logout
     path('logout', vu.logout_view, name='logout'),

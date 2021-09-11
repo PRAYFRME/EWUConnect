@@ -1,0 +1,84 @@
+{% extends 'posts/base.html' %}
+{% include 'posts/navbar.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-5 col-sm-6">
+            <a href="{% url 'post-list' %}" class="btn btn-light"><i class="fas fa-arrow-left"></i> Back To Feed</a>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-5 col-sm-12 border-bottom">
+            <div>
+                {% if author_profile.image %}
+                <a href="{% url 'profile' author.id %}">
+                    <img class="round-circle post-img" height="30" width="30"
+                         src="{{ author_profile.image.url }}"/>
+                </a>
+                {% endif %}
+                <p class="post-text">
+                    <a class="text-primary post-link" href="{% url 'profile' author.id %}">
+                        @{{ post.author.name}}</a> {{ post.created_on }}
+                </p>
+            </div>
+            {% if request.user == post.author %}
+            <a href="{% url 'post-edit' post.pk %}" class="btn btn-secondary mb-3"><i class="far fa-edit"></i>
+                Update</a>
+            <a href="{% url 'post-delete' post.pk %}" class="btn btn-danger mb-3"><i class="fas fa-trash"></i> Delete
+            </a>
+            {% endif %}
+            {% if post.image %}
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <img src="{{ post.image.url }}" class="img-fluid" style="width: 600px;"/>
+                </div>
+            </div>
+            {% endif %}
+            <p>{{ post.body }}</p>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3 mb-5">
+        <div class="col-md-5 col-sm-12">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success mt-3">Submit!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% for comment in comments %}
+    <div class="row justify-content-center mt-3 mb-5">
+        <div class="col-md-5 col-sm-12 border-bottom">
+
+            <div>
+                {% if comment.author.profile.image %}
+                <a href="{% url 'profile' comment.author.id %}">
+                    <img class="round-circle post-img" height="30" width="30"
+                         src="{{ comment.author.profile.image.url }}"/>
+                </a>
+                {% endif %}
+                <p class="post-text">
+                    <a class="text-primary post-link" href="{% url 'profile' comment.author.id %}">
+                        @{{ comment.author.name }}</a> {{ comment.created_on }}
+                </p>
+            </div>
+
+            <p>{{ comment.comment }}</p>
+            {% if request.user == comment.author %}
+            <a href="{% url 'comment-delete' post.pk comment.pk %}" class="btn btn-danger">
+                <i class="fas fa-trash"></i> Delete Comment
+            </a>
+            {% endif %}
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

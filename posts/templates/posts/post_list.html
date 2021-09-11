@@ -1,0 +1,44 @@
+{% extends 'posts/base.html' %}
+{% include 'posts/navbar.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-5 col-sm-12 border-bottom">
+            <h5>Add a Post!</h5>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3 mb-5">
+        <div class="col-md-5 col-sm-12 border-bottom">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success mt-3">Submit!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% for post in post_list %}
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-5 col-sm-12 border-bottom position-relative">
+
+            <div class="shared-post position-relative pt-3">
+                {% if post.image %}
+                <div class="row">
+                    <div class="col-md-4 col-xs-12">
+                        <img src="{{ post.image.url }}" class="post-image" style="width: 300px;"/>
+                    </div>
+                </div>
+                {% endif %}
+                <p>{{ post.body }}</p>
+                <a href="{% url 'post-detail' post.pk %}" class="btn btn-primary">See More</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
